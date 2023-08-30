@@ -22,7 +22,6 @@ short_sentences = []  # Store sentences below average length
 # Open the CSV file
 with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
     csv_reader = csv.DictReader(csvfile)
-
     # Iterate through each row
     for row in csv_reader:
         tokenized_sentence = row['tokenized_sentence']
@@ -35,7 +34,6 @@ with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
 if sentence_count > 0:
     average_length = total_length / sentence_count
     print(f"Average sentence length: {average_length:.2f} words")
-
     # Categorize sentences as long or short and perform analysis
     with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
         csv_reader = csv.DictReader(csvfile)
