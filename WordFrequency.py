@@ -9,11 +9,8 @@ from matplotlib.font_manager import FontProperties
 # Set Bengali font
 bengali_font = FontProperties(fname="Li Alinur Tatsama Unicode.ttf")
 
-# # Configure Matplotlib for Unicode support
-# plt.rcParams['font.family'] = bengali_font.get_name()
-# plt.rcParams['axes.unicode_minus'] = False  # To handle minus sign
 
-csv_file_path = 'Tokenized/humayunahmed.csv'
+csv_file_path = 'Tokenized/RobTheKing.csv'
 word_freq_dist = FreqDist()
 text = []
 
@@ -30,7 +27,7 @@ with open(csv_file_path, 'r', newline='', encoding='utf-8') as csvfile:
 
     # Iterate through each row
     for row in csv_reader:
-        tokenized_sentence = row['Text']
+        tokenized_sentence = row['tokenized_sentence']
         tokenized_sentence = remove_punctuations(tokenized_sentence)
         text.append(tokenized_sentence)
 
