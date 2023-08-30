@@ -4,7 +4,7 @@ from nltk import FreqDist
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
 
-csv_file_path = 'Tokenized/RobTheKing.csv'
+csv_file_path = 'Tokenized/BegumTheQueen.csv'
 
 
 def remove_punctuations(sentence):

@@ -18,13 +18,14 @@ while True:
 tokenized_sentences = []
 
 # Read the CSV file
-csv_file_path = "Tokenized/Begum-Rokeya_Toishi-Sheet1Tokenized.csv"
+csv_file_path = "Tokenized/HumayunTheKing.csv"
+new_csv_file_path = csv_file_path
 punctuations = '।,;:?!\'."-[]{}()–—―~'
 number = '১২৩৪৫৬৭৮৯'
 with open(csv_file_path, 'r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
-        novel_name = row['novel_name']
+        author = row['author']
         content = row['tokenized_sentence']
     # Append tokenized sentences and novel name to the list
         if content[0] in ["”", "“", "‘", "’", "'", ":", "”", "“", "‘", "’", "'", ":", "ঃ", '"',"*","-","—"]:
@@ -37,18 +38,18 @@ with open(csv_file_path, 'r', encoding='utf-8') as csvfile:
         else:
             if "“" in content:
                 content+="”"
-                tokenized_sentences.append((novel_name, content))
+                tokenized_sentences.append((author, content))
             else:
-                tokenized_sentences.append((novel_name, content))
+                tokenized_sentences.append((author, content))
 
 # Write tokenized sentences to a new CSV file
-new_csv_file_path = "Tokenized/BegumTheQueen.csv"
+
 with open(new_csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
-    fieldnames = ['novel_name', 'tokenized_sentence']
+    fieldnames = ['author', 'tokenized_sentence']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
-    for novel_name, sentence in tokenized_sentences:
-        writer.writerow({'novel_name': novel_name, 'tokenized_sentence': sentence})
+    for author, sentence in tokenized_sentences:
+        writer.writerow({'author': author, 'tokenized_sentence': sentence})
 
 print("Cleaned sentences saved to:", new_csv_file_path)
