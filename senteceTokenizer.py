@@ -21,22 +21,30 @@ tokenizer = Tokenizer()
 tokenized_sentences = []
 
 # Read the CSV file
-csv_file_path = "novel.csv"
+csv_file_path = "PreTokenized Dataset/robindronath.csv"
 with open(csv_file_path, 'r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
-        novel_name = row['name']
-        content = row['content']
+        novel_name = row['label']
+        content = row['text']
 
         # Tokenize sentences
         sentences = tokenizer.sentence_tokenizer(content)
 
         # Append tokenized sentences and novel name to the list
         for sentence in sentences:
-            tokenized_sentences.append((novel_name, sentence))
+
+            if sentence[0] == "”" or sentence[0] == "“" or sentence[0] == "‘" or sentence[0] == "’":
+                continue
+            else:
+                if "“" in sentence:
+                    sentence+="”"
+                    tokenized_sentences.append((novel_name, sentence))
+                else:
+                    tokenized_sentences.append((novel_name, sentence))
 
 # Write tokenized sentences to a new CSV file
-new_csv_file_path = "RobTheKing.csv"
+new_csv_file_path = "Tokenized/RobTheKing.csv"
 with open(new_csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
     fieldnames = ['novel_name', 'tokenized_sentence']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -46,3 +54,6 @@ with open(new_csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
         writer.writerow({'novel_name': novel_name, 'tokenized_sentence': sentence})
 
 print("Tokenized sentences saved to:", new_csv_file_path)
+
+
+
