@@ -10,7 +10,7 @@ from matplotlib.font_manager import FontProperties
 bengali_font = FontProperties(fname="Li Alinur Tatsama Unicode.ttf")
 
 
-csv_file_path = 'Tokenized/SaratTheKing.csv'
+csv_file_path = 'Tokenized/RobTheKing.csv'
 word_freq_dist = FreqDist()
 text = []
 
